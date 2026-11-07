@@ -1,3 +1,5 @@
+/*I added a Mood Tracker feature that allows users to record
+how they are feeling when writing a journal entry.*/
 
 using System;
 
@@ -38,13 +40,35 @@ class Program
                 Console.WriteLine(prompt);
                 Console.Write("> ");
 
+               
                 string response = Console.ReadLine() ?? "";
+
+                Console.WriteLine("How are you feeling today?");
+                Console.WriteLine("1. Happy");
+                Console.WriteLine("2. Normal");
+                Console.WriteLine("3. Stressed");
+                Console.WriteLine("4. Sad");
+                Console.WriteLine("5. Excited");
+
+                Console.Write("Choose your mood (1-5): ");
+                string moodChoice = Console.ReadLine() ?? "";
+
+                string mood = moodChoice switch
+                {
+                    "1" => "Happy",
+                    "2" => "Normal",
+                    "3" => "Stressed",
+                    "4" => "Sad",
+                    "5" => "Excited",
+                    _ => "Not specified"
+                };
 
                 Entry entry = new Entry();
 
                 entry._date = DateTime.Now.ToShortDateString();
                 entry._promptText = prompt;
                 entry._entryText = response;
+                entry._mood = mood;
 
                 journal.AddEntry(entry);
 
